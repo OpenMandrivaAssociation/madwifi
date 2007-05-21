@@ -18,7 +18,6 @@ License:	GPL
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-Packager:	Mandrake Linux Team <http://www.mandrakeexpert.com>
 Prefix:		%{_prefix}
 Requires:	drakxtools >= 9.2-8mdk
 BuildRequires:	sharutils kernel-source
