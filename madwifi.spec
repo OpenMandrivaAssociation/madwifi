@@ -3,8 +3,8 @@
 %define name madwifi
 #define rversion 20050829
 #define version 0.%{rversion}
-%define version 0.9.2
-%define rversion 0.9.2
+%define version 0.9.3
+%define rversion 0.9.3
 %define mdkrelease 1
 %define release %mkrel %{mdkrelease}
 
@@ -71,10 +71,12 @@ DEST_MODULE_LOCATION[7]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[8]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[9]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[10]=/kernel/drivers/net/wireless
+DEST_MODULE_LOCATION[11]=/kernel/drivers/net/wireless
+DEST_MODULE_LOCATION[12]=/kernel/drivers/net/wireless
 BUILT_MODULE_NAME[0]=ath_pci
 BUILT_MODULE_LOCATION[0]=ath
 BUILT_MODULE_NAME[1]=ath_hal
-BUILT_MODULE_LOCATION[1]=ath
+BUILT_MODULE_LOCATION[1]=ath_hal
 BUILT_MODULE_NAME[2]=wlan
 BUILT_MODULE_LOCATION[2]=net80211
 BUILT_MODULE_NAME[3]=wlan_wep
@@ -91,8 +93,12 @@ BUILT_MODULE_NAME[8]=wlan_scan_ap
 BUILT_MODULE_LOCATION[8]=net80211
 BUILT_MODULE_NAME[9]=wlan_scan_sta
 BUILT_MODULE_LOCATION[9]=net80211
-BUILT_MODULE_NAME[10]=ath_rate_sample
-BUILT_MODULE_LOCATION[10]=ath_rate/sample
+BUILT_MODULE_NAME[10]=ath_rate_amrr
+BUILT_MODULE_LOCATION[10]=ath_rate/amrr
+BUILT_MODULE_NAME[11]=ath_rate_onoe
+BUILT_MODULE_LOCATION[11]=ath_rate/onoe
+BUILT_MODULE_NAME[12]=ath_rate_sample
+BUILT_MODULE_LOCATION[12]=ath_rate/sample
 
 MAKE[0]="make KERNELPATH=\${kernel_source_dir} TARGET=%{_arch}-elf modules"
 
