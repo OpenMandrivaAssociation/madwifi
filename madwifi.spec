@@ -3,8 +3,8 @@
 %define name madwifi
 #define rversion 20050829
 #define version 0.%{rversion}
-%define version 0.9.3
-%define rversion 0.9.3
+%define version 0.9.3.1
+%define rversion 0.9.3.1
 %define mdkrelease 1
 %define release %mkrel %{mdkrelease}
 
@@ -13,7 +13,7 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Source0:	%{name}-%{rversion}.tar.bz2
-Patch0:		madwifi-20050829-x86_64-rules.patch.bz2
+Patch0:		madwifi-20050829-x86_64-rules.patch
 License:	GPL
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
@@ -130,6 +130,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dkms-%{name}
 %defattr(-,root,root)
-%doc %{_docdir}/%{name}-%{version}/*
+%doc %{_docdir}/%{name}/*
 %dir %{_usr}/src/%{name}-%{version}
 %{_usr}/src/%{name}-%{version}/*
