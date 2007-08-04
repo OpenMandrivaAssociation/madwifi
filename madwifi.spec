@@ -14,7 +14,7 @@ Version:	%{version}
 Release:	%{release}
 Source0:	%{name}-%{rversion}.tar.bz2
 Patch0:		madwifi-20050829-x86_64-rules.patch
-License:	GPL
+License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -130,6 +130,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dkms-%{name}
 %defattr(-,root,root)
-%doc %{_docdir}/%{name}/*
+%doc COPYRIGHT README
 %dir %{_usr}/src/%{name}-%{version}
 %{_usr}/src/%{name}-%{version}/*
