@@ -3,8 +3,8 @@
 %define name madwifi
 #define rversion 20050829
 #define version 0.%{rversion}
-%define version 0.9.3.1
-%define rversion 0.9.3.1
+%define version 0.9.3.2
+%define rversion 0.9.3.2
 %define mdkrelease 1
 %define release %mkrel %{mdkrelease}
 
