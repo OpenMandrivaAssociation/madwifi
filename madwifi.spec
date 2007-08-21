@@ -10,6 +10,7 @@
 
 Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support.
 Name:		%{name}
+Epoch:  	1
 Version:	%{version}
 Release:	%{release}
 Source0:	%{name}-%{rversion}.tar.bz2
