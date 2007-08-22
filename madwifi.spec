@@ -1,11 +1,8 @@
 # I love OpenSource :-(
 
 %define name madwifi
-#define rversion 20050829
-#define version 0.%{rversion}
 %define version 0.9.3.2
-%define rversion 0.9.3.2
-%define mdkrelease 1
+%define mdkrelease 2
 %define release %mkrel %{mdkrelease}
 
 Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support.
@@ -13,8 +10,8 @@ Name:		%{name}
 Epoch:  	1
 Version:	%{version}
 Release:	%{release}
-Source0:	%{name}-%{rversion}.tar.bz2
-Patch0:		madwifi-20050829-x86_64-rules.patch
+Source0:	%{name}-%{version}.tar.bz2
+Patch0: 	madwifi-20050829-x86_64-rules.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
@@ -43,7 +40,7 @@ using Atheros chip sets. See also:
  http://madwifiwiki.thewebhost.de/wiki/
 
 %prep
-%setup -q -n %{name}-%{rversion}
+%setup -q -n %{name}-%{version}
 %patch0 -p1 -b .x86_64-rules
 
 %build
@@ -51,14 +48,14 @@ using Atheros chip sets. See also:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd $RPM_BUILD_DIR/%{name}-%{rversion}
+cd $RPM_BUILD_DIR/%{name}-%{version}
 
 # driver source
-mkdir -p $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}
-cp -r * $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}
-cat > $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}/dkms.conf <<EOF
+mkdir -p $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}-%{release}
+cp -r * $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}-%{release}
+cat > $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}-%{release}/dkms.conf <<EOF
 PACKAGE_NAME=%{name}
-PACKAGE_VERSION=%{version}
+PACKAGE_VERSION=%{version}-%{release}
 
 DEST_MODULE_LOCATION[0]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[1]=/kernel/drivers/net/wireless
@@ -110,17 +107,16 @@ mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 %makeinstall -C tools DESTDIR=$RPM_BUILD_ROOT BINDIR=%{_bindir} MANDIR=%{_mandir}
 
 %post -n dkms-%{name}
-set -x
-/usr/sbin/dkms --rpm_safe_upgrade add -m %name -v %version
-/usr/sbin/dkms --rpm_safe_upgrade build -m %name -v %version
-/usr/sbin/dkms --rpm_safe_upgrade install -m %name -v %version
+/usr/sbin/dkms --rpm_safe_upgrade add -m %name -v %version-%release
+/usr/sbin/dkms --rpm_safe_upgrade build -m %name -v %version-%release
+/usr/sbin/dkms --rpm_safe_upgrade install -m %name -v %version-%release --force
+exit 0
 
 %preun -n dkms-%{name}
-set -x
-/usr/sbin/dkms --rpm_safe_upgrade remove -m %name -v %version --all
+/usr/sbin/dkms --rpm_safe_upgrade remove -m %name -v %version-%release --all
+exit 0
 
 %clean
-rm -rf $RPM_BUILD_DIR/%{name}
 rm -rf $RPM_BUILD_ROOT
 
 %files
@@ -132,5 +128,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n dkms-%{name}
 %defattr(-,root,root)
 %doc COPYRIGHT README
-%dir %{_usr}/src/%{name}-%{version}
-%{_usr}/src/%{name}-%{version}/*
+%dir %{_usr}/src/%{name}-%{version}-%{release}
+%{_usr}/src/%{name}-%{version}-%{release}/*
