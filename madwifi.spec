@@ -5,7 +5,7 @@
 %define mdkrelease 3
 %define release %mkrel %{mdkrelease}
 
-Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support.
+Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support
 Name:		%{name}
 Epoch:  	1
 Version:	%{version}
@@ -28,7 +28,7 @@ using Atheros chip sets. See also:
  http://madwifiwiki.thewebhost.de/wiki/
 
 %package -n dkms-%{name}
-Summary:	Multiband Atheros Driver for WiFi (MADWIFI) dkms driver.
+Summary:	Multiband Atheros Driver for WiFi (MADWIFI) dkms driver
 Group:		System/Kernel and hardware
 Requires:	dkms, drakxtools >= 9.2-8mdk
 
