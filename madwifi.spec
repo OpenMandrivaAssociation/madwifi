@@ -1,8 +1,8 @@
 # I love OpenSource :-(
 
 %define name madwifi
-%define version 0.9.3.2
-%define mdkrelease 3
+%define version 0.9.3.3
+%define mdkrelease 1
 %define release %mkrel %{mdkrelease}
 
 Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support
