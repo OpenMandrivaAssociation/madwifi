@@ -15,6 +15,7 @@ Patch0: 	madwifi-20050829-x86_64-rules.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 Prefix:		%{_prefix}
 Requires:	drakxtools >= 9.2-8mdk
 BuildRequires:	sharutils kernel-source
