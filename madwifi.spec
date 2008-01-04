@@ -20,6 +20,9 @@ Version:	%{version}
 Release:	%{release}
 Source0:	%{distname}.tar.gz
 Patch0: 	madwifi-20050829-x86_64-rules.patch
+# from http://madwifi.org/attachment/ticket/1679/
+# (with first hunk removed)
+Patch1:		madwifi-ng-0933.ar2425.20071130.i386.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
@@ -50,6 +53,10 @@ using Atheros chip sets. See also:
 %prep
 %setup -q -n %{distname}
 %patch0 -p1 -b .x86_64-rules
+%ifarch %{ix86}
+# (blino) applied on i386 only since it breaks ABI and only i386 HAL has been updated
+%patch1 -p0 -b .ar2425
+%endif
 
 %build
 %make -C tools
