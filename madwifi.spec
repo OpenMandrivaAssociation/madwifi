@@ -2,15 +2,23 @@
 
 %define name madwifi
 %define version 0.9.3.3
+%define snaprev r3114
+%define snapdate 20080104
 %define mdkrelease 1
+%if %{snapdate}
+%define distname madwifi-ng-%{snaprev}-%{snapdate}
+%define release %mkrel %{mdkrelease}.%{snaprev}
+%else
+%define distname %{name}-%{version}
 %define release %mkrel %{mdkrelease}
+%endif
 
 Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support
 Name:		%{name}
 Epoch:  	1
 Version:	%{version}
 Release:	%{release}
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	%{distname}.tar.gz
 Patch0: 	madwifi-20050829-x86_64-rules.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
@@ -40,7 +48,7 @@ using Atheros chip sets. See also:
  http://madwifiwiki.thewebhost.de/wiki/
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{distname}
 %patch0 -p1 -b .x86_64-rules
 
 %build
