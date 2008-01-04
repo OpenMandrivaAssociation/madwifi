@@ -48,7 +48,6 @@ using Atheros chip sets. See also:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd $RPM_BUILD_DIR/%{name}-%{version}
 
 # driver source
 mkdir -p $RPM_BUILD_ROOT/%{_usr}/src/%{name}-%{version}-%{release}
