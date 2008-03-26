@@ -27,7 +27,6 @@ License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-Prefix:		%{_prefix}
 BuildRequires:	sharutils kernel-source
 
 %description -n %{name}
