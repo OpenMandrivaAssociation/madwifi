@@ -4,7 +4,7 @@
 %define version 0.9.3.3
 %define snaprev r3114
 %define snapdate 20080104
-%define mdkrelease 1
+%define mdkrelease 2
 %if %{snapdate}
 %define distname madwifi-ng-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -28,7 +28,6 @@ Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 Prefix:		%{_prefix}
-Requires:	drakxtools >= 9.2-8mdk
 BuildRequires:	sharutils kernel-source
 
 %description -n %{name}
@@ -41,7 +40,7 @@ using Atheros chip sets. See also:
 %package -n dkms-%{name}
 Summary:	Multiband Atheros Driver for WiFi (MADWIFI) dkms driver
 Group:		System/Kernel and hardware
-Requires:	dkms, drakxtools >= 9.2-8mdk
+Requires:	dkms
 
 %description -n dkms-%{name}
 Multiband Atheros Driver for WiFi (MADWIFI): 
