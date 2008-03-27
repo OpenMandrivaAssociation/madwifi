@@ -4,7 +4,7 @@
 %define version 0.9.3.3
 %define snaprev r3114
 %define snapdate 20080104
-%define mdkrelease 2
+%define mdkrelease 3
 %if %{snapdate}
 %define distname madwifi-ng-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -118,6 +118,12 @@ EOF
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 %makeinstall -C tools DESTDIR=$RPM_BUILD_ROOT BINDIR=%{_bindir} MANDIR=%{_mandir}
 
+# reload ath_pci after suspend
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pm/config.d/
+cat > $RPM_BUILD_ROOT%{_sysconfdir}/pm/config.d/%name <<EOF
+SUSPEND_MODULES="\$SUSPEND_MODULES ath_pci"
+EOF
+
 %post -n dkms-%{name}
 /usr/sbin/dkms --rpm_safe_upgrade add -m %name -v %version-%release
 /usr/sbin/dkms --rpm_safe_upgrade build -m %name -v %version-%release
@@ -142,3 +148,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYRIGHT README
 %dir %{_usr}/src/%{name}-%{version}-%{release}
 %{_usr}/src/%{name}-%{version}-%{release}/*
+%{_sysconfdir}/pm/config.d/%name
