@@ -4,7 +4,7 @@
 %define version 0.9.3.3
 %define snaprev r3114
 %define snapdate 20080104
-%define mdkrelease 3
+%define mdkrelease 4
 %if %{snapdate}
 %define distname madwifi-ng-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -19,6 +19,9 @@ Epoch:  	1
 Version:	%{version}
 Release:	%{release}
 Source0:	%{distname}.tar.gz
+Source1:	eee-wlan
+Source2:	eee-wlan-off
+Source3:	eee-wlan-on
 Patch0: 	madwifi-20050829-x86_64-rules.patch
 # from http://madwifi.org/attachment/ticket/1679/
 # (with first hunk removed)
@@ -123,6 +126,10 @@ mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pm/config.d/
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/pm/config.d/%name <<EOF
 SUSPEND_MODULES="\$SUSPEND_MODULES ath_pci"
 EOF
+# reload ath_pci on EEE after switching wlan
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/acpi/{events,actions}
+cp %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/acpi/actions
+cp %SOURCE2 %SOURCE3 $RPM_BUILD_ROOT%{_sysconfdir}/acpi/events
 
 %post -n dkms-%{name}
 /usr/sbin/dkms --rpm_safe_upgrade add -m %name -v %version-%release
@@ -149,3 +156,4 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_usr}/src/%{name}-%{version}-%{release}
 %{_usr}/src/%{name}-%{version}-%{release}/*
 %{_sysconfdir}/pm/config.d/%name
+%{_sysconfdir}/acpi/*/eee-*
