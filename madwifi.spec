@@ -4,7 +4,7 @@
 %define version 0.9.3.3
 %define snaprev r3114
 %define snapdate 20080104
-%define mdkrelease 4
+%define mdkrelease 5
 %if %{snapdate}
 %define distname madwifi-ng-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -149,11 +149,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYRIGHT README
 %{_bindir}/*
 %{_mandir}/man*/*
+%{_sysconfdir}/pm/config.d/%name
+%{_sysconfdir}/acpi/*/eee-*
 
 %files -n dkms-%{name}
 %defattr(-,root,root)
 %doc COPYRIGHT README
 %dir %{_usr}/src/%{name}-%{version}-%{release}
 %{_usr}/src/%{name}-%{version}-%{release}/*
-%{_sysconfdir}/pm/config.d/%name
-%{_sysconfdir}/acpi/*/eee-*
