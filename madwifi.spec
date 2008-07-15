@@ -4,7 +4,7 @@
 %define version 0.9.3.3
 %define snaprev r3114
 %define snapdate 20080104
-%define mdkrelease 5
+%define mdkrelease 6
 %if %{snapdate}
 %define distname madwifi-ng-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -23,9 +23,9 @@ Source1:	eee-wlan
 Source2:	eee-wlan-off
 Source3:	eee-wlan-on
 Patch0: 	madwifi-20050829-x86_64-rules.patch
-# from http://madwifi.org/attachment/ticket/1679/
-# (with first hunk removed)
-Patch1:		madwifi-ng-0933.ar2425.20071130.i386.patch
+# from http://madwifi.org/ticket/1192
+# svn diff -c 3698 http://svn.madwifi.org/madwifi/branches/madwifi-hal-0.10.5.6/
+Patch1:		madwifi-ng-0.10.5.6.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
@@ -54,10 +54,7 @@ using Atheros chip sets. See also:
 %prep
 %setup -q -n %{distname}
 %patch0 -p1 -b .x86_64-rules
-%ifarch %{ix86}
-# (blino) applied on i386 only since it breaks ABI and only i386 HAL has been updated
 %patch1 -p0 -b .ar2425
-%endif
 
 %build
 %make -C tools
