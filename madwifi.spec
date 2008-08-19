@@ -1,12 +1,13 @@
 # I love OpenSource :-(
 
+
 %define name madwifi
-%define version 0.9.3.3
-%define snaprev r3114
-%define snapdate 20080104
-%define mdkrelease 7
+%define version 0.9.4
+%define snaprev r3835
+%define snapdate 20080801
+%define mdkrelease 1
 %if %{snapdate}
-%define distname madwifi-ng-%{snaprev}-%{snapdate}
+%define distname madwifi-hal-0.10.5.6-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
 %else
 %define distname %{name}-%{version}
@@ -23,9 +24,6 @@ Source1:	eee-wlan
 Source2:	eee-wlan-off
 Source3:	eee-wlan-on
 Patch0: 	madwifi-20050829-x86_64-rules.patch
-# from http://madwifi.org/ticket/1192
-# svn diff -c 3698 http://svn.madwifi.org/madwifi/branches/madwifi-hal-0.10.5.6/
-Patch1:		madwifi-ng-0.10.5.6.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
 Group:		System/Kernel and hardware
@@ -54,7 +52,6 @@ using Atheros chip sets. See also:
 %prep
 %setup -q -n %{distname}
 %patch0 -p1 -b .x86_64-rules
-%patch1 -p0 -b .ar2425
 
 %build
 %make -C tools
