@@ -5,7 +5,7 @@
 %define version 0.9.4
 %define snaprev r3835
 %define snapdate 20080801
-%define mdkrelease 2
+%define mdkrelease 3
 %if %{snapdate}
 %define distname madwifi-hal-0.10.5.6-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -130,7 +130,7 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp %SOURCE4 $RPM_BUILD_ROOT%{_datadir}/%{name}
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/20-madwifi.rules <<EOF
-INTERFACE=="wifi0", DRIVERS=="ath_pci", RUN+="%{_datadir}/%{name}/aspire-leds"
+ENV{INTERFACE}=="wifi0", DRIVERS=="ath_pci", RUN+="%{_datadir}/%{name}/aspire-leds"
 EOF
 
 %post -n dkms-%{name}
