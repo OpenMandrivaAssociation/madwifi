@@ -5,7 +5,7 @@
 %define version 0.9.4
 %define snaprev r3835
 %define snapdate 20080801
-%define mdkrelease 1
+%define mdkrelease 2
 %if %{snapdate}
 %define distname madwifi-hal-0.10.5.6-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -23,6 +23,7 @@ Source0:	%{distname}.tar.gz
 Source1:	eee-wlan
 Source2:	eee-wlan-off
 Source3:	eee-wlan-on
+Source4:	aspire-leds
 Patch0: 	madwifi-20050829-x86_64-rules.patch
 License:	BSD or GPLv2
 Url:		http://sourceforge.net/projects/madwifi
@@ -124,6 +125,13 @@ EOF
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/acpi/{events,actions}
 cp %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/acpi/actions
 cp %SOURCE2 %SOURCE3 $RPM_BUILD_ROOT%{_sysconfdir}/acpi/events
+# Enable leds on Aspire One
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp %SOURCE4 $RPM_BUILD_ROOT%{_datadir}/%{name}
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/
+cat > $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/20-madwifi.rules <<EOF
+INTERFACE=="wifi0", DRIVERS=="ath_pci", RUN+="%{_datadir}/%{name}/aspire-leds"
+EOF
 
 %post -n dkms-%{name}
 /usr/sbin/dkms --rpm_safe_upgrade add -m %name -v %version-%release
@@ -145,6 +153,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man*/*
 %{_sysconfdir}/pm/config.d/%name
 %{_sysconfdir}/acpi/*/eee-*
+%{_sysconfdir}/udev/rules.d/20-madwifi.rules
+%{_datadir}/%{name}
 
 %files -n dkms-%{name}
 %defattr(-,root,root)
