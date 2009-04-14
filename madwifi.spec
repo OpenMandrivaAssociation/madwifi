@@ -3,9 +3,9 @@
 
 %define name madwifi
 %define version 0.9.4
-%define snaprev r3835
-%define snapdate 20080801
-%define mdkrelease 3
+%define snaprev r3998
+%define snapdate 20090413
+%define mdkrelease 1
 %if %{snapdate}
 %define distname madwifi-hal-0.10.5.6-%{snaprev}-%{snapdate}
 %define release %mkrel %{mdkrelease}.%{snaprev}
@@ -26,10 +26,10 @@ Source3:	eee-wlan-on
 Source4:	aspire-leds
 Patch0: 	madwifi-20050829-x86_64-rules.patch
 License:	BSD or GPLv2
-Url:		http://sourceforge.net/projects/madwifi
+Url:		http://madwifi-project.org
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	sharutils kernel-source
+BuildRequires:	sharutils
 
 %description -n %{name}
 Multiband Atheros Driver for WiFi (MADWIFI): 
