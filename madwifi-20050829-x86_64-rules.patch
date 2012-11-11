@@ -1,0 +1,11 @@
+--- madwifi-20050829/hal/public/x86_64-elf.inc.x86_64-rules	2005-02-22 09:17:27.000000000 -0500
++++ madwifi-20050829/hal/public/x86_64-elf.inc	2005-09-01 03:18:57.000000000 -0400
+@@ -42,7 +42,7 @@
+ 
+ #
+ ifndef TOOLPREFIX
+-TOOLPREFIX=	/pub/gnu/bin/x86_64-linux-
++TOOLPREFIX=
+ endif
+ #
+ CC=	${TOOLPREFIX}gcc
