@@ -25,7 +25,7 @@ Source3:	eee-wlan-on
 Source4:	aspire-leds
 Patch0: 	madwifi-20050829-x86_64-rules.patch
 License:	BSD or GPLv2
-Url:		http://madwifi-project.org
+Url:		https://madwifi-project.org
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	sharutils
