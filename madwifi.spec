@@ -28,6 +28,7 @@ License:	BSD or GPLv2
 Url:		https://madwifi-project.org
 Group:		System/Kernel and hardware
 BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRequires:	make
 BuildRequires:	sharutils
 
 %description -n %{name}
