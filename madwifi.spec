@@ -7,10 +7,10 @@
 %define mdkrelease 4
 %if %{snapdate}
 %define distname madwifi-hal-0.10.5.6-%{snaprev}-%{snapdate}
-%define release %mkrel %{mdkrelease}.%{snaprev}
+%define release %{mdkrelease}.%{snaprev}.1
 %else
 %define distname %{name}-%{version}
-%define release %mkrel %{mdkrelease}
+%define release %{mdkrelease}.1
 %endif
 
 Summary:	Multiband Atheros Driver for WiFi (MADWIFI) support
